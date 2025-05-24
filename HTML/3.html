@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Local Community Event Portal</title>
+  <style>
+    /* General Styles */
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+    nav {
+      background-color: #333;
+      padding: 1em;
+    }
+    nav a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+    }
+    #welcomeBanner {
+      background-color: lightblue;
+      padding: 1em;
+      text-align: center;
+    }
+    .highlight {
+      font-weight: bold;
+      color: green;
+    }
+    table img {
+      border: 2px solid #333;
+      width: 100px;
+      height: 100px;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      margin: 20px;
+      border-radius: 8px;
+    }
+    output {
+      display: block;
+      margin-top: 10px;
+      font-weight: bold;
+      color: blue;
+    }
+    #videoMsg {
+      color: purple;
+    }
+  </style>
+  <script>
+    function validatePhone(input) {
+      const phonePattern = /^[0-9]{10}$/;
+      if (!phonePattern.test(input.value)) {
+        alert("Invalid phone number");
+      }
+    }
+
+    function showFee(select) {
+      document.getElementById("fee").textContent = `Fee: ₹${select.value}`;
+    }
+
+    function confirmSubmit() {
+      document.getElementById("confirmation").value = "Registration submitted successfully!";
+    }
+
+    function enlargeImage(img) {
+      img.style.transform = "scale(1.5)";
+    }
+
+    function countChars(textarea) {
+      document.getElementById("charCount").textContent = `Characters: ${textarea.value.length}`;
+    }
+
+    function videoReady() {
+      document.getElementById("videoMsg").textContent = "Video ready to play";
+    }
+
+    window.onbeforeunload = function() {
+      return "Are you sure you want to leave? Your changes may not be saved.";
+    };
+
+    function savePreference(select) {
+      localStorage.setItem("eventType", select.value);
+    }
+
+    function loadPreference() {
+      const saved = localStorage.getItem("eventType");
+      if (saved) document.getElementById("eventType").value = saved;
+    }
+
+    function clearPreferences() {
+      localStorage.clear();
+      sessionStorage.clear();
+    }
+
+    function findNearby() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, showError, { enableHighAccuracy: true });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    function showPosition(position) {
+      document.getElementById("location").textContent =
+        `Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`;
+    }
+
+    function showError(error) {
+      document.getElementById("location").textContent = `Error: ${error.message}`;
+    }
+  </script>
+</head>
+<body onload="loadPreference()">
+
+<!-- Navigation -->
+<nav>
+  <a href="#home">Home</a>
+  <a href="#events">Events</a>
+  <a href="#contact">Contact</a>
+  <a href="help.html" target="_blank">Help</a>
+</nav>
+
+<!-- Welcome Banner -->
+<div id="welcomeBanner">
+  <h1>Welcome to the Local Community Event Portal</h1>
+  <p>Special offer: <span style="color:red; font-weight:bold">Free registration</span> for first 50 users!</p>
+</div>
+
+<!-- Image Gallery -->
+<section id="events">
+  <h2 class="highlight">Community Event Gallery</h2>
+  <table>
+    <caption>Past Event Highlights</caption>
+    <tr>
+      <td><img src="event1.jpg" alt="Event 1" title="Event 1" ondblclick="enlargeImage(this)"></td>
+      <td><img src="event2.jpg" alt="Event 2" title="Event 2" ondblclick="enlargeImage(this)"></td>
+      <td><img src="event3.jpg" alt="Event 3" title="Event 3" ondblclick="enlargeImage(this)"></td>
+    </tr>
+    <tr>
+      <td><img src="event4.jpg" alt="Event 4" title="Event 4" ondblclick="enlargeImage(this)"></td>
+      <td><img src="event5.jpg" alt="Event 5" title="Event 5" ondblclick="enlargeImage(this)"></td>
+      <td><img src="event6.jpg" alt="Event 6" title="Event 6" ondblclick="enlargeImage(this)"></td>
+    </tr>
+  </table>
+</section>
+
+<!-- Event Registration Form -->
+<section id="contact">
+  <h2>Register for an Event</h2>
+  <form onsubmit="confirmSubmit(); return false;">
+    <label>Name: <input type="text" name="name" placeholder="Enter your name" required autofocus></label><br><br>
+    <label>Email: <input type="email" name="email" placeholder="Enter your email" required></label><br><br>
+    <label>Phone: <input type="text" onblur="validatePhone(this)"></label><br><br>
+    <label>Date: <input type="date" required></label><br><br>
+    <label>Event Type:
+      <select id="eventType" onchange="showFee(this); savePreference(this);">
+        <option value="100">Sports</option>
+        <option value="200">Music</option>
+        <option value="150">Art</option>
+      </select>
+    </label><br><br>
+    <div id="fee">Fee: ₹100</div>
+    <label>Message:<br>
+      <textarea onkeyup="countChars(this)"></textarea>
+    </label><br>
+    <div id="charCount"></div><br>
+    <button type="submit">Submit</button>
+    <output id="confirmation"></output>
+  </form>
+  <button onclick="clearPreferences()">Clear Preferences</button>
+</section>
+
+<!-- Video Section -->
+<section>
+  <h2>Event Promo Video</h2>
+  <video width="320" controls oncanplay="videoReady()">
+    <source src="promo.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+  <div id="videoMsg"></div>
+</section>
+
+<!-- Geolocation -->
+<section>
+  <h2>Find Nearby Events</h2>
+  <button onclick="findNearby()">Find Nearby Events</button>
+  <p id="location"></p>
+</section>
+
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Local City Council</p>
+</footer>
+
+</body>
+</html>

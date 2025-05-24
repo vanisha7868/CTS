@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Local Community Event Portal</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+
+  <style>
+    /* Reset */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    /* 1. Internal CSS: Body background */
+    body {
+      background: url('https://via.placeholder.com/1200x600') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Roboto', sans-serif;
+    }
+
+    /* 2. Comments and Structure */
+    /* Header Styles */
+    #mainHeader {
+      background-color: rgba(0, 123, 255, 0.8);
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    /* 3. Selectors */
+    h2 {
+      font-size: 1.8rem;
+      color: #444;
+      margin-bottom: 10px;
+    }
+
+    .eventCard {
+      background-color: rgba(255,255,255,0.9);
+      padding: 15px;
+      margin: 20px;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+
+    h3, p {
+      font-size: 1rem;
+      color: #222;
+    }
+
+    /* 4. Color and Background */
+    .gradientHeader {
+      background: linear-gradient(to right, #ff7e5f, #feb47b);
+      color: white;
+      padding: 10px;
+    }
+
+    /* 5. Typography */
+    .description {
+      font-size: 1rem;
+      font-style: italic;
+      font-weight: 400;
+      text-align: justify;
+      text-transform: capitalize;
+      letter-spacing: 0.5px;
+      line-height: 1.6;
+    }
+
+    /* 6. Links and Lists */
+    nav ul {
+      list-style-type: none;
+      list-style-position: inside;
+      display: flex;
+      gap: 15px;
+      background-color: #eee;
+      padding: 10px;
+    }
+
+    nav a:link {
+      color: #007BFF;
+    }
+
+    nav a:visited {
+      color: purple;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    nav a:active {
+      color: red;
+    }
+
+    /* 7. Tables */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 20px 0;
+    }
+
+    th, td {
+      border: 1px solid #999;
+      padding: 10px;
+      text-align: center;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+
+    /* 8. Box Model */
+    .eventCard {
+      margin: 30px;
+      padding: 20px;
+      border: 2px solid #333;
+      outline: 2px dashed #888;
+    }
+
+    .hiddenField {
+      visibility: hidden;
+    }
+
+    .noneField {
+      display: none;
+    }
+
+    /* 9. Multi-column layout */
+    .news {
+      column-count: 2;
+      column-gap: 30px;
+      column-rule: 1px solid gray;
+      margin: 20px;
+      background-color: white;
+      padding: 15px;
+    }
+
+    /* 10. Media Queries */
+    @media (max-width: 768px) {
+      nav ul {
+        flex-direction: column;
+      }
+
+      img {
+        width: 100%;
+        height: auto;
+      }
+
+      body {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 1. Inline CSS -->
+  <h1 style="color: red;">Local Community Event Portal</h1>
+
+  <!-- 3. ID Selector -->
+  <header id="mainHeader">
+    <h2>Main Community Header</h2>
+    <p>Explore and join exciting local events!</p>
+  </header>
+
+  <!-- 6. Navigation -->
+  <nav>
+    <ul>
+      <li><a href="#">Home</a></li>
+      <li><a href="#">Events</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- 4. Gradient Header -->
+  <div class="gradientHeader">
+    <h3>Upcoming Events</h3>
+  </div>
+
+  <!-- 5 & 8. Event Card with Box Model -->
+  <section class="eventCard">
+    <h3>Clean City Drive</h3>
+    <p class="description">join us on sunday to clean and beautify our local park area.</p>
+    <input type="text" placeholder="Visible field">
+    <input class="hiddenField" type="text" placeholder="Hidden">
+    <input class="noneField" type="text" placeholder="None">
+  </section>
+
+  <!-- 7. Table Styling -->
+  <table>
+    <tr>
+      <th>Event</th>
+      <th>Date</th>
+      <th>Location</th>
+    </tr>
+    <tr>
+      <td>Blood Donation</td>
+      <td>June 10</td>
+      <td>Community Hall</td>
+    </tr>
+    <tr>
+      <td>Food Fest</td>
+      <td>July 3</td>
+      <td>Main Street</td>
+    </tr>
+  </table>
+
+  <!-- 9. Multiple Columns -->
+  <section class="news">
+    <h3>Community News</h3>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla id accumsan justo. Vestibulum tristique nisi sed lorem volutpat ultrices. Maecenas egestas sapien in turpis imperdiet lacinia.</p>
+    <p>Phasellus sed massa a sapien ultrices volutpat. Etiam at fermentum diam. Sed vehicula nisi vitae convallis tempor. Proin mattis, elit vitae eleifend posuere, purus justo tincidunt mi.</p>
+  </section>
+
+</body>
+</html>
